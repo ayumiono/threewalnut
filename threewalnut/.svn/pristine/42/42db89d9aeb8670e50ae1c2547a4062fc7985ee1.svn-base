@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+		<property name="skipUndeclaredResults" value="true" />
+	</bean>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="100" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWait" value="10000" />
+		<property name="minIdle" value="10" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery">
+			<value>select 1 from dual</value>
+		</property>
+	</bean>
+	<bean id="rsExtractor" class="org.springframework.jdbc.core.RowMapperResultSetExtractor">
+		<constructor-arg name="rowMapper">
+			<bean class="org.springframework.jdbc.core.ColumnMapRowMapper"></bean>
+		</constructor-arg>
+	</bean>
+	<bean id="storedProcedureTemplate" class="mhao.threewalnut.dao.StoredProcedureTemplate">
+		<property name="procedures">
+			<map>
+				<entry key="p_add_community">
+					<ref bean="p_add_community"/>
+				</entry>
+				<entry key="p_add_buildings">
+					<ref bean="p_add_buildings"/>
+				</entry>
+				<entry key="p_add_houseowner">
+					<ref bean="p_add_houseowner"/>
+				</entry>
+				<entry key="p_add_avilable_mac">
+					<ref bean="p_add_avilable_mac"/>
+				</entry>
+				<entry key="p_add_position">
+					<ref bean="p_add_position" />
+				</entry>
+				<entry key="p_add_user">
+					<ref bean="p_add_user" />
+				</entry>
+				<entry key="p_add_customer_follow">
+					<ref bean="p_add_customer_follow" />
+				</entry>
+				<entry key="p_add_customer">
+					<ref bean="p_add_customer" />
+				</entry>
+				<entry key="p_add_customer_phone">
+					<ref bean="p_add_customer_phone" />
+				</entry>
+				<entry key="p_update_customer_phone">
+					<ref bean="p_update_customer_phone" />
+				</entry>
+				<entry key="p_add_watch">
+					<ref bean="p_add_watch" />
+				</entry>
+				<entry key="p_add_project_watch">
+					<ref bean="p_add_project_watch" />
+				</entry>
+				<entry key="p_add_houseowner_follow">
+					<ref bean="p_add_houseowner_follow" />
+				</entry>
+				<entry key="p_add_houseowner_phone">
+					<ref bean="p_add_houseowner_phone" />
+				</entry>
+				<entry key="p_update_houseowner_phone">
+					<ref bean="p_update_houseowner_phone" />
+				</entry>
+				<entry key="p_add_dept">
+					<ref bean="p_add_dept" />
+				</entry>
+				<entry key="p_add_picture">
+					<ref bean="p_add_picture" />
+				</entry>
+				<entry key="p_add_password">
+					<ref bean="p_add_password" />
+				</entry>
+				<entry key="p_delete_building">
+					<ref bean="p_delete_building"/>
+				</entry>
+				<entry key="p_disable_position">
+					<ref bean="p_disable_position"/>
+				</entry>
+				<entry key="p_disable_community">
+					<ref bean="p_disable_community"/>
+				</entry>
+				<entry key="p_close_house_listing">
+					<ref bean="p_close_house_listing"/>
+				</entry>
+				<entry key="p_update_house">
+					<ref bean="p_update_house"/>
+				</entry>
+				<entry key="p_update_customer">
+					<ref bean="p_update_customer"/>
+				</entry>
+				<entry key="p_update_position">
+					<ref bean="p_update_position"/>
+				</entry>
+				<entry key="p_change_password">
+					<ref bean="p_change_password"/>
+				</entry>
+				<entry key="p_update_config">
+					<ref bean="p_update_config" />
+				</entry>
+				<entry key="p_get_full_tagsinfo">
+					<ref bean="p_get_full_tagsinfo" />
+				</entry>
+				<entry key="p_update_customer_follow">
+					<ref bean="p_update_customer_follow" />
+				</entry>
+				<entry key="p_update_community">
+					<ref bean="p_update_community" />
+				</entry>
+				<entry key="p_update_houseowner_follow">
+					<ref bean="p_update_houseowner_follow" />
+				</entry>
+				<entry key="p_update_dept_name">
+					<ref bean="p_update_dept_name" />
+				</entry>
+				<entry key="p_disable_dept">
+					<ref bean="p_disable_dept" />
+				</entry>
+				<entry key="p_mark_stranger">
+					<ref bean="p_mark_stranger" />
+				</entry>
+				<entry key="p_get_customers">
+					<ref bean="p_get_customers"></ref>
+				</entry>
+				<entry key="p_get_customer">
+					<ref bean="p_get_customer"></ref>
+				</entry>
+				<entry key="p_get_user_by_phone">
+					<ref bean="p_get_user_by_phone"></ref>
+				</entry>
+				<entry key="p_get_user">
+					<ref bean="p_get_user"></ref>
+				</entry>
+				<entry key="p_fuzzy_query_employee">
+					<ref bean="p_fuzzy_query_employee"></ref>
+				</entry>
+				<entry key="p_change_customer_belong">
+					<ref bean="p_change_customer_belong"></ref>
+				</entry>
+				<entry key="p_check_in">
+					<ref bean="p_check_in"></ref>
+				</entry>
+				<entry key="p_get_report_dept">
+					<ref bean="p_get_report_dept"></ref>
+				</entry>
+				<entry key="p_report_business">
+					<ref bean="p_report_business"></ref>
+				</entry>
+				<entry key="p_report_house">
+					<ref bean="p_report_house"></ref>
+				</entry>
+				<entry key="p_report_house_app_init">
+					<ref bean="p_report_house_app_init"></ref>
+				</entry>
+				<entry key="p_report_customer">
+					<ref bean="p_report_customer"></ref>
+				</entry>
+				<entry key="p_report_customer_app_init">
+					<ref bean="p_report_customer_app_init"></ref>
+				</entry>
+				<entry key="p_get_buildings">
+					<ref bean="p_get_buildings"></ref>
+				</entry>
+				<entry key="p_get_building">
+					<ref bean="p_get_building"></ref>
+				</entry>
+				<entry key="p_get_communities">
+					<ref bean="p_get_communities"></ref>
+				</entry>
+				<entry key="p_get_community">
+					<ref bean="p_get_community"></ref>
+				</entry>
+				<entry key="p_get_houses_4app">
+					<ref bean="p_get_houses_4app"></ref>
+				</entry>
+				<entry key="p_get_houses_4c">
+					<ref bean="p_get_houses_4c"></ref>
+				</entry>
+				<entry key="p_get_houses_pageinfo">
+					<ref bean="p_get_houses_pageinfo"></ref>
+				</entry>
+				<entry key="p_get_house">
+					<ref bean="p_get_house"></ref>
+				</entry>
+				<entry key="p_get_strangers">
+					<ref bean="p_get_strangers"/>
+				</entry>
+				<entry key="p_get_dept_children">
+					<ref bean="p_get_dept_children"/>
+				</entry>
+				<entry key="p_get_regions">
+					<ref bean="p_get_regions"/>
+				</entry>
+				<entry key="p_get_dept">
+					<ref bean="p_get_dept"/>
+				</entry>
+				<entry key="p_get_dept_root">
+					<ref bean="p_get_dept_root"/>
+				</entry>
+				<entry key="p_get_avliable_macs">
+					<ref bean="p_get_avliable_macs"/>
+				</entry>
+				<entry key="p_get_districts">
+					<ref bean="p_get_districts"/>
+				</entry>
+				<entry key="p_get_areas">
+					<ref bean="p_get_areas"/>
+				</entry>
+				<entry key="p_get_businessphone_from_position">
+					<ref bean="p_get_businessphone_from_position" />
+				</entry>
+				<entry key="p_get_customer_follows">
+					<ref bean="p_get_customer_follows" />
+				</entry>
+				<entry key="p_get_customer_watchs">
+					<ref bean="p_get_customer_watchs" />
+				</entry>
+				<entry key="p_get_app_version">
+					<ref bean="p_get_app_version"/>
+				</entry>
+				<entry key="p_get_app_version_v1_5_0">
+					<ref bean="p_get_app_version_v1_5_0"/>
+				</entry>
+				<entry key="p_get_wgt_version">
+					<ref bean="p_get_wgt_version"/>
+				</entry>
+				<entry key="p_get_positions">
+					<ref bean="p_get_positions" />
+				</entry>
+				<entry key="p_get_direct_positions">
+					<ref bean="p_get_direct_positions" />
+				</entry>
+				<entry key="p_get_houseowner_follows">
+					<ref bean="p_get_houseowner_follows" />
+				</entry>
+				<entry key="p_get_house_watchs">
+					<ref bean="p_get_house_watchs" />
+				</entry>
+				<entry key="p_get_houseowner_phone">
+					<ref bean="p_get_houseowner_phone" />
+				</entry>
+				<entry key="p_get_customer_phone">
+					<ref bean="p_get_customer_phone"/>
+				</entry>
+				<entry key="p_get_customer_timenode">
+					<ref bean="p_get_customer_timenode"/>
+				</entry>
+				<entry key="p_get_houseowner_timenode">
+					<ref bean="p_get_houseowner_timenode"/>
+				</entry>
+				<entry key="p_stranger_to_customer">
+					<ref bean="p_stranger_to_customer"/>
+				</entry>
+				<entry key="p_stranger_to_houseowner">
+					<ref bean="p_stranger_to_houseowner"/>
+				</entry>
+				<entry key="p_add_house_listing">
+					<ref bean="p_add_house_listing"/>
+				</entry>
+				<entry key="p_add_phone_call">
+					<ref bean="p_add_phone_call"/>
+				</entry>
+				<entry key="p_get_call_record_url">
+					<ref bean="p_get_call_record_url"/>
+				</entry>
+				<entry key="p_update_call_record_status">
+					<ref bean="p_update_call_record_status"/>
+				</entry>
+				<entry key="p_update_call_record_url">
+					<ref bean="p_update_call_record_url"/>
+				</entry>
+				<entry key="p_disable_user">
+					<ref bean="p_disable_user"/>
+				</entry>
+				<entry key="p_reset_password">
+					<ref bean="p_reset_password"/>
+				</entry>
+				<entry key="p_get_houseowner_follow_operations">
+					<ref bean="p_get_houseowner_follow_operations"/>
+				</entry>
+				<entry key="p_get_customer_watch_operations">
+					<ref bean="p_get_customer_watch_operations"/>
+				</entry>
+				<entry key="p_get_operations_type">
+					<ref bean="p_get_operations_type"/>
+				</entry>
+				<entry key="p_get_employee_path">
+					<ref bean="p_get_employee_path"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

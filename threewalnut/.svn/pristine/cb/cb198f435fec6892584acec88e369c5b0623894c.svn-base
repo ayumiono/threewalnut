@@ -1,0 +1,13 @@
+#global key
+secret_key=HZQFY263RQXH9BT1E8XUEP4N
+#aes salt key
+aes_salt_key=aVwlfRGBTxHMXVoU
+#app package path
+app_package_path=/app/client/app.exe
+app_package_path_mac=/app/client_mac/app.dmg
+#mhao api id
+mhao_id=59
+#mhao api key
+mhao_key=DN142T14W99WRQEXC5L3P24E
+#pic dir
+pic_dir=/pic/

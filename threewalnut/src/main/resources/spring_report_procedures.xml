@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="p_get_report_dept" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_get_report_dept" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_start" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_end" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="deptList" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="p_report_house_app_init" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_report_house_app_init_v1_8_0" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="rpt" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="p_report_customer_app_init" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_report_customer_app_init_v1_8_0" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="rpt" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="p_report_business" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_report_business" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_dept_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="businessRpt" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="p_report_house" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_report_house_v1_8_2" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_dept_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_start" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_end" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="houseRpt" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="p_report_customer" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_report_customer_v1_8_2" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_dept_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_start" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_end" />
+					<constructor-arg name="sqlType" value="93" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="customerRpt" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="p_get_employee_path" class="mhao.threewalnut.dao.StoredProcedureTemplate.MyStoredProcedure">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="sql" value="p_get_employee_path" />
+		<property name="parameters">
+			<list>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_query_uid" />
+					<constructor-arg name="sqlType" value="1" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlParameter">
+					<constructor-arg name="name" value="i_query_flag" />
+					<constructor-arg name="sqlType" value="4" />
+				</bean>
+				<bean class="org.springframework.jdbc.core.SqlReturnResultSet">
+					<constructor-arg name="name" value="employeePath" />
+					<constructor-arg name="extractor">
+						<ref bean="rsExtractor"/>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>

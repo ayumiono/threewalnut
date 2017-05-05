@@ -1,0 +1,8 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+#jdbc.url=jdbc:mysql://10.0.0.5:3306/xz?useUnicode=true&characterEncoding=UTF8
+jdbc.url=jdbc:mysql://192.168.1.113:3306/threewalnut?useUnicode=true&characterEncoding=UTF8
+jdbc.username=root
+jdbc.password=111111
+#jdbc.url=jdbc:mysql://rdshmxl9613t1mp9on26.mysql.rds.aliyuncs.com/housetracking?useUnicode=true&characterEncoding=UTF8
+#jdbc.username=lami_dev
+#jdbc.password=lami_dev001
